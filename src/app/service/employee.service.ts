@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../domain/employee';
-import { Page } from '../domain/page';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,8 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(pageNumber?: number, pageSize?: number): Observable<Page> {
-    return this.http.get<Page>(`${this.host}/api/v1/employees?pageNum=${pageNumber}&pageSize=${pageSize}`);
+  findAll(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.host}/api/v1/employees`);
   }
 
   get(id: number): Observable<Employee> {
